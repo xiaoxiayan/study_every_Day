@@ -242,11 +242,43 @@ mycat.eat('小鱼')
 // var a = new MysqlDb<User>()
 // a.add(u)
 /*  模块化   exp */
-/*装饰器*/
+/*装饰器
+
+    function logClass(parmas:string){
+    return function(target:any){
+        console.log(parmas);
+        console.log(target,'target');
+    }
+}
+
+@logClass('hello')
+class httpClient{
+    constructor(){
+    
+    }
+    getData(){
+    
+    }
+}
+
+var http = new httpClient();
+*/
+/*
+属性装饰器
+ 
+  
+ */
+//类装饰器
 function logClass(parmas) {
     return function (target) {
-        console.log(parmas);
-        console.log(target, 'target');
+    };
+}
+//属性装饰器  接受两个参数， 
+// 1、原型对象。2、 属性名称
+function logProperty(parmas) {
+    return function (target, attr) {
+        console.log(target, '----', attr, 'parmas==', parmas);
+        target[attr] = parmas;
     };
 }
 var httpClient = /** @class */ (function () {
@@ -254,9 +286,11 @@ var httpClient = /** @class */ (function () {
     }
     httpClient.prototype.getData = function () {
     };
+    __decorate([
+        logProperty('www.baidu.com')
+    ], httpClient.prototype, "url");
     httpClient = __decorate([
-        logClass('hello')
+        logClass('xxx')
     ], httpClient);
     return httpClient;
 }());
-var http = new httpClient();

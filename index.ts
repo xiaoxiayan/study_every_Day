@@ -301,9 +301,9 @@ mycat.eat('小鱼')
 /*  模块化   exp */
 
 
-/*装饰器*/
+/*装饰器
 
-function logClass(parmas:string){
+    function logClass(parmas:string){
     return function(target:any){
         console.log(parmas);
         console.log(target,'target');
@@ -321,3 +321,47 @@ class httpClient{
 }
 
 var http = new httpClient();
+*/
+
+/*
+属性装饰器
+ 
+  
+ */
+
+//类装饰器
+function logClass(parmas:string){
+    return function(target:any){
+
+
+    }
+
+}
+//属性装饰器  接受两个参数， 
+// 1、原型对象。2、 属性名称
+
+function logProperty(parmas:any){
+    return function(target:any,attr:any){
+
+        console.log(target,'----',attr,'parmas==',parmas);
+        target[attr] = parmas
+
+    }
+
+}
+@logClass('xxx')
+class httpClient{
+    @logProperty('www.baidu.com')
+    public url:any | undefined ;
+    constructor(){
+
+
+    }
+
+    getData(){
+
+
+    }
+
+}
+
