@@ -75,9 +75,249 @@
 //         console.log(info,'aaa')
 // }
 // printLabel(obj)
+/** 
+    类类型接口
+    多态
+interface Animal {
+    name:string;
+    eat(str:string):void;
+
+}
+
+class cat implements Animal {
+    name:string;
+    constructor(name:string){
+        this.name = name
+    }
+    eat(food:string){
+        console.log(this.name + food )
+    }
+}
+
+var mycat = new cat('mimi');
+
+mycat.eat('小鱼')
+
+*/
+
+/*
+    接口 继承 接口
+
+    interface Animal {
+     eat():void;
+ }
+
+ interface Person extends Animal {
+    work():void;
+ }
+ class Web implements Person{
+    name:string;
+    constructor(name:string){
+        this.name = name;
+    }
+    eat(){
+        console.log('吃啥');
+    }
+    work(){
+        
+    }
+ }
+ */
+ 
+
+
 
 /*  泛型 **/
-function getData<T>(value:T):T{
-    return value;
-}   
-getData<number>(123);
+/*
+    泛型类，比如有个最小堆算法，同时支持返回数字和字符串两个类型，通过泛型来实现
+    不仅支持当前类型，对未来，未知的类型也支持    
+
+    
+
+*/
+
+// class MinClass<T>{
+
+//     public list:T[] = [];
+
+//     add(value:T){
+
+//         this.list.push(value)
+    
+//     }
+
+//     min():T{
+
+//         var minNum = this.list[0];
+
+//         for( var i = 0 ; i< this.list.length; i++){
+
+//             if(minNum > this.list[i]){
+
+//                 minNum = this.list[i]
+//             }
+//         }
+
+//         return minNum;
+//     }
+// }
+
+// var m = new MinClass<string>();
+
+// m.add('z');
+// m.add('h');
+// m.add('s');
+// console.log(m.min())
+
+/*
+    泛型类 应用
+    定义一个 User 的类型，这个类的作用就是 映射数据库字段，
+    然后定义一个 mysqlDb 的类，这个类用于操作数据库，
+    然后把 User 类作为参数传入到 mysqlDb 中
+
+    var user = new User({
+        username:'张三',
+        password:'123456'
+    })
+
+    var Db = new MysqlDb()
+    Db.add(user)
+*/ 
+    // class User{
+    //     username:string | undefined;
+    //     password:string | undefined;
+    // }
+
+    // class MysqlDb {
+    //     add(user:User):boolean{
+    //         console.log(user,'aaadata')
+    //         return true
+    //     }
+    // }
+
+    // var user = new User
+
+    // user.username = '张三';
+    // user.password = '123456';
+
+    // var Db = new MysqlDb()
+
+    // Db.add(user)
+//泛型版
+    // class MysqlDb<T>{
+    //     add(info:T):boolean{
+    //         console.log(info)
+    //         return true
+    //     }
+    // }
+//想给 user表加数据
+// 定义一个 user 类，和 数据库进行映射
+// class User{
+//         username:string | undefined;
+//         password:string | undefined;
+//     }
+
+// var user = new User
+//     user.username = '张三';
+//     user.password = '123456';
+
+// var Db = new MysqlDb<User>()
+// Db.add(user)
+
+//泛型接口
+
+// interface configFn<T> {
+//     (value:T):T
+// }
+
+// function getData<T>(value:T):T{
+//     return value
+// }
+
+// var myGetData:configFn<string> = getData;
+
+// myGetData('2222')
+
+/*
+ 综合应用
+ 功能：定义一个操作数据库的库，支持 Mysql Mssql MongoDb 
+ 
+ 要求1：Mysql Mssql MongoDb 功能一样 都有 add update delete get 方法
+ 
+ 注意：约束统一的规范、以及代码重用
+
+ 解决方案：需要约束规范所以要定义接口，需要代码重用所以用到泛型
+
+    1、接口：在面向对象的编程中，接口是一种规范的定义，它定义了行为和动作的规范
+    2、泛型： 解决 类 、 接口 方法的 复用性、
+*/
+
+// interface DBI<T> {
+
+//     add(info:T):boolean;
+
+//     update(info:T,id:number):boolean;
+
+//     delete(id:number):boolean;
+
+//     get(id:number):any[];
+
+// }
+
+//定义一个操作 mysqk 的类
+
+// class Mysql<T> implements DBI<T>{
+//     constructor(){
+//         //可以进行 axios 之类的操作把
+
+//     }
+//     add(info: T): boolean {
+//         return true
+//     }
+//     update(info: T, id: number): boolean {
+//         return true
+
+//     }
+//     delete(id: number): boolean {
+//         return true
+
+//     }
+//     get(id: number): any[] {
+//         return []
+//     }
+// }
+
+// class User{
+//     name:string;
+//     constructor(name:string){
+//         this.name = name;
+//     }
+// }
+// var u = new User('zz')
+
+// var a = new MysqlDb<User>()
+// a.add(u)
+
+/*  模块化   exp */
+
+
+/*装饰器*/
+
+function logClass(parmas:string){
+    return function(target:any){
+        console.log(parmas);
+        console.log(target,'target');
+    }
+}
+
+@logClass('hello')
+class httpClient{
+    constructor(){
+    
+    }
+    getData(){
+    
+    }
+}
+
+var http = new httpClient();
