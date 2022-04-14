@@ -55,6 +55,12 @@ class myPromise {
       if (this.status === myPromise.PENDING) {
         this.resolveCallbacks.push(onFULFILLED)
         this.rejectCallbacks.push(onREJECTED)
+        if(resolve) {
+          this.resolveCallbacks.push(resolve)
+        }
+        if(reject) {
+          this.rejectCallbacks.push(reject)
+        }
       }
       if (this.status === myPromise.FULFILLD) {
         setTimeout(() => {
@@ -76,19 +82,17 @@ console.log(1)
 let promise = new myPromise((resolve, reject) => {
   console.log(2)
   setTimeout(() => {
-    console.log(promise.status)
     resolve('最后执行')
-    console.log(promise.status)
     console.log(4)
   })
 })
 
 promise.then(
-  result => { console.log(promise.status); console.log(result) },
+  result => { console.log(result) },
   result => { console.log('rej===>', result.message) },
 ).then(
-  result => { console.log('ddd') },
+  result => { console.log('ddd--',result) },
 ).then(
-  result => { console.log('aaaa') },
+  result => { console.log('aaafa a', result) },
 )
 console.log(3)
