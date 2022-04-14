@@ -75,7 +75,7 @@
 //         console.log(info,'aaa')
 // }
 // printLabel(obj)
-/** 
+/**
     类类型接口
     多态
 interface Animal {
@@ -119,20 +119,20 @@ mycat.eat('小鱼')
         console.log('吃啥');
     }
     work(){
-        
+
     }
  }
  */
- 
+
 
 
 
 /*  泛型 **/
 /*
     泛型类，比如有个最小堆算法，同时支持返回数字和字符串两个类型，通过泛型来实现
-    不仅支持当前类型，对未来，未知的类型也支持    
+    不仅支持当前类型，对未来，未知的类型也支持
 
-    
+
 
 */
 
@@ -143,7 +143,7 @@ mycat.eat('小鱼')
 //     add(value:T){
 
 //         this.list.push(value)
-    
+
 //     }
 
 //     min():T{
@@ -182,7 +182,7 @@ mycat.eat('小鱼')
 
     var Db = new MysqlDb()
     Db.add(user)
-*/ 
+*/
     // class User{
     //     username:string | undefined;
     //     password:string | undefined;
@@ -240,10 +240,10 @@ mycat.eat('小鱼')
 
 /*
  综合应用
- 功能：定义一个操作数据库的库，支持 Mysql Mssql MongoDb 
- 
+ 功能：定义一个操作数据库的库，支持 Mysql Mssql MongoDb
+
  要求1：Mysql Mssql MongoDb 功能一样 都有 add update delete get 方法
- 
+
  注意：约束统一的规范、以及代码重用
 
  解决方案：需要约束规范所以要定义接口，需要代码重用所以用到泛型
@@ -313,10 +313,10 @@ mycat.eat('小鱼')
 @logClass('hello')
 class httpClient{
     constructor(){
-    
+
     }
     getData(){
-    
+
     }
 }
 
@@ -325,43 +325,80 @@ var http = new httpClient();
 
 /*
 属性装饰器
- 
-  
+
+
  */
 
 //类装饰器
-function logClass(parmas:string){
-    return function(target:any){
+// function logClass(parmas:string){
+//     return function(target:any){
 
 
-    }
+//     }
 
-}
-//属性装饰器  接受两个参数， 
+// }
+//属性装饰器  接受两个参数，
 // 1、原型对象。2、 属性名称
 
-function logProperty(parmas:any){
-    return function(target:any,attr:any){
+// function logProperty(parmas:any){
+//     return function(target:any,attr:any){
 
-        console.log(target,'----',attr,'parmas==',parmas);
-        target[attr] = parmas
+//         console.log(target,'----',attr,'parmas==',parmas);
+//         target[attr] = parmas
 
-    }
+//     }
 
-}
-@logClass('xxx')
-class httpClient{
-    @logProperty('www.baidu.com')
-    public url:any | undefined ;
-    constructor(){
-
-
-    }
-
-    getData(){
+// }
+// @logClass('xxx')
+// class httpClient{
+//     @logProperty('www.baidu.com')
+//     public url:any | undefined ;
+//     constructor(){
 
 
-    }
+//     }
 
-}
+//     getData(){
 
+
+//     }
+
+// }
+
+// let number: number | string
+// const apiList = {
+//     'LOGIN': '/api/login/loginUsr',
+//     'getMenuList': '/api/foodDetail/getItemDetail'
+//   }
+//   type apiKeyType = keyof typeof apiList
+// //   console.log(apiKeyType)
+// interface ColumnProps {
+//     name: string;
+//     menuList: object[];
+//     status: number;
+//     storeNo: string;
+//     type: number
+// }
+
+
+// const b :ColumnProps[] = [{
+//     name: 'string',
+//     menuList: [],
+//     status: 0,
+//     storeNo: 'string',
+//     type:3 ,
+// }]
+type Person = {
+    name: string;
+    age: number;
+  }
+
+  let man: Person = {
+    name: "Semlinker",
+    age: 30
+  }
+
+  type Human = typeof man
+
+
+//   手写 promise

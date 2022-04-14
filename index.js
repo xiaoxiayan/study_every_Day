@@ -3,12 +3,6 @@
 //         this.n = n;
 //         this.x = x
 //     }
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 //     run():void{
 //     }
 //     getName():string{
@@ -275,22 +269,24 @@ function logClass(parmas) {
 }
 //属性装饰器  接受两个参数， 
 // 1、原型对象。2、 属性名称
-function logProperty(parmas) {
-    return function (target, attr) {
-        console.log(target, '----', attr, 'parmas==', parmas);
-        target[attr] = parmas;
-    };
-}
-var httpClient = /** @class */ (function () {
-    function httpClient() {
-    }
-    httpClient.prototype.getData = function () {
-    };
-    __decorate([
-        logProperty('www.baidu.com')
-    ], httpClient.prototype, "url");
-    httpClient = __decorate([
-        logClass('xxx')
-    ], httpClient);
-    return httpClient;
-}());
+// function logProperty(parmas:any){
+//     return function(target:any,attr:any){
+//         console.log(target,'----',attr,'parmas==',parmas);
+//         target[attr] = parmas
+//     }
+// }
+// @logClass('xxx')
+// class httpClient{
+//     @logProperty('www.baidu.com')
+//     public url:any | undefined ;
+//     constructor(){
+//     }
+//     getData(){
+//     }
+// }
+// let number: number | string
+var apiList = {
+    'LOGIN': '/api/login/loginUsr',
+    'getMenuList': '/api/foodDetail/getItemDetail'
+};
+//   console.log(apiKeyType)
